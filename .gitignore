@@ -25,10 +25,7 @@ dist/
 .env.*
 
 # Database
-*.db
-chroma_data/
-backend/chroma_data/
-backend/*.db
+chroma_data/chroma.sqlite3
 
 # Node
 frontend/node_modules/
