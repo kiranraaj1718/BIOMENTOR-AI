@@ -1,0 +1,45 @@
+# Python
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+
+# Virtualenv
+.venv/
+
+# VSCode
+/.vscode/
+
+# macOS
+.DS_Store
+
+# Environment
+.env
+.env.*
+
+# Database
+*.db
+chroma_data/
+backend/chroma_data/
+backend/*.db
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# Logs
+logs/
+*.log
+
+# Python packaging
+*.egg
+*.egg-info
+pip-wheel-metadata/
