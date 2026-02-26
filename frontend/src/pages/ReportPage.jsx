@@ -22,7 +22,7 @@ export default function ReportPage() {
   // Load topics
   useEffect(() => {
     api.get('/report/topics')
-      .then(res => setTopics(res.data))
+      .then(res => setTopics(Array.isArray(res.data) ? res.data : []))
       .catch(() => {
         setTopics([
           { id: 'mol_bio_101', name: 'Molecular Biology Fundamentals', difficulty: 'beginner', subtopics: ['DNA Structure and Replication', 'RNA Types and Transcription', 'Protein Synthesis'] },

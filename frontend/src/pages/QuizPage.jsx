@@ -27,7 +27,7 @@ export default function QuizPage() {
   // Load topics
   useEffect(() => {
     quizAPI.getTopics()
-      .then(res => setTopics(res.data))
+      .then(res => setTopics(Array.isArray(res.data) ? res.data : []))
       .catch(() => {
         // Demo topics
         setTopics([
@@ -61,7 +61,7 @@ export default function QuizPage() {
         difficulty,
         num_questions: numQuestions,
       });
-      setQuestions(res.data.questions);
+      setQuestions(Array.isArray(res.data.questions) ? res.data.questions : []);
       setQuizId(res.data.quiz_id);
       setAnswers({});
       setCurrentQ(0);
@@ -243,7 +243,7 @@ export default function QuizPage() {
           <h3 className="text-lg font-medium text-white mb-5 leading-relaxed">{question.question}</h3>
 
           <div className="space-y-2.5 stagger-children">
-            {question.options.map((option, i) => {
+            {(question.options || []).map((option, i) => {
               const optionLetter = option.charAt(0);
               const isSelected = answers[question.id] === optionLetter;
               return (
@@ -329,7 +329,7 @@ export default function QuizPage() {
         {/* Detailed Results */}
         <h3 className="text-lg font-semibold text-white mb-4 animate-slide-up-spring" style={{ animationDelay: '0.1s' }}>Question Review</h3>
         <div className="space-y-3 mb-6 stagger-children">
-          {results.results.map((r, i) => (
+          {(results.results || []).map((r, i) => (
             <div key={i} className={`glass-card p-4 border-l-4 hover-tilt glass-card-shine ${r.is_correct ? 'border-l-emerald-500' : 'border-l-red-500'}`}>
               <div className="flex items-start gap-3">
                 {r.is_correct ? (
@@ -343,7 +343,7 @@ export default function QuizPage() {
                   {/* Show all options with highlighting */}
                   {r.options && r.options.length > 0 ? (
                     <div className="space-y-1 mb-3">
-                      {r.options.map((opt, j) => {
+                      {(r.options || []).map((opt, j) => {
                         const letter = opt.charAt(0).toUpperCase();
                         const isUserAnswer = letter === (r.your_answer_letter || r.your_answer?.charAt(0))?.toUpperCase();
                         const isCorrectAnswer = letter === (r.correct_answer_letter || r.correct_answer?.charAt(0))?.toUpperCase();

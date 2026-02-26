@@ -37,7 +37,8 @@ export default function DashboardPage() {
     );
   }
 
-  const { summary, topic_mastery, score_trend } = data;
+  const { topic_mastery, score_trend } = data;
+  const summary = data.summary || {};
 
   // Prepare radar chart data
   const radarData = topic_mastery?.map(t => ({
